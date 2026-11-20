@@ -18,7 +18,7 @@ public class BookingClient {
     private final RequestSpecification spec = new RequestSpecBuilder()
             .setBaseUri(ApiConfig.BASE_URL)
             .setContentType(ContentType.JSON)
-            .setAccept(ContentType.JSON)
+            .addHeader("Accept", "application/json")
             .log(LogDetail.URI)
             .build();
 
