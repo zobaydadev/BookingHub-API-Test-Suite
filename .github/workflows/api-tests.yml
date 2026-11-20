@@ -4,6 +4,8 @@ on:
   push:
   pull_request:
   workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *'   # nightly at 03:00 UTC
 
 jobs:
   test:
@@ -23,3 +25,10 @@ jobs:
         with:
           name: surefire-reports
           path: target/surefire-reports
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the Docker image
+        run: docker build -t bookinghub-api-tests .
