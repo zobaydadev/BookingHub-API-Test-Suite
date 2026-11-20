@@ -8,7 +8,8 @@ API test suite in Java using Rest Assured and TestNG. It tests the public Restfu
 - JSON schema validation of the booking response
 - Ordered CRUD flow with `dependsOnMethods`
 - Negative tests for 404 and 403 behaviour
-- CI on every push with GitHub Actions
+- CI on every push and a nightly scheduled run with GitHub Actions
+- Dockerfile so the suite runs the same way anywhere
 
 ## Technology
 Java 17, Maven, Rest Assured 5.5, TestNG 7.10, Jackson, json-schema-validator
@@ -37,3 +38,9 @@ mvn clean test
 mvn clean test -Dapi.base.url=https://restful-booker.herokuapp.com
 ```
 Results are written to `target/surefire-reports`.
+
+## Run with Docker
+```bash
+docker build -t bookinghub-api-tests .
+docker run --rm bookinghub-api-tests
+```
